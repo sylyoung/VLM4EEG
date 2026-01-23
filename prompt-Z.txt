@@ -1,0 +1,49 @@
+[Task Definition]
+From a professional EEG diagnostician perspective, classify the provided electroencephalogram (EEG) time-series plot of Test EEG Image into one of two categories: "SEIZURE" or "NON-SEIZURE".
+
+[Diagnostic Criteria]
+1. NON-SEIZURE (Background/Artifact):
+   - Background: Chaotic, quasi-random fluctuations without organized rhythmic structure.
+   - Isolated Artifacts: Eye blinks or muscle noise that are single events (not rhythmic).
+   - Postictal Slowing: If the signal is just slow waves (1-3 Hz) without spikes, classify as Non-Seizure (unless distinct spike-and-wave is present).
+
+2. SEIZURE:
+   Look for a "Distinct Departure" from background defined by:
+   - Morphology:
+     * Spike-and-Slow-Wave: A sharp spike (<0.1s) followed by a slow wave (2–10 Hz).
+     * Polyspikes: Multiple fast spikes followed by a slow wave.
+     * High Amplitude: Signal clearly taller than the background activity.
+   - Synchrony: Rhythmic patterns appearing simultaneously (within 0.2s) across multiple channels.
+   - Frequency Constraint: Repetitive waves typically fall between 2 Hz (Delta) and 10 Hz (Alpha).
+   - Special Cases: Intense, obscuring muscle artifact that flattens/overwhelms cerebral activity can indicate Tonic-Clonic seizure.
+
+[Analysis Protocol]
+Before categorizing, generate a brief visual description of the Test EEG Image to ground the reasoning:
+1. Frequency Check: Is the rhythmic activity within 2–10 Hz (Seizure) or random/chaotic (Non-Seizure)?
+2. Morphology Check: Are there specific "Spike-and-Wave" complexes or just fuzzy noise?
+3. Synchrony Check: Is the pattern visible across multiple channels at the same time?
+
+[Reference Examples]
+The following EEG-images serve as ground-truth anchors for the classification. The Non-SEIZURE examples are from the same patient, whereas the SEIZURE examples are from a different patient with seizure:
+
+Reference Image 1:
+<Nearest Neighbor Example 2>
+Label: SEIZURE.
+Reference Image 2:
+<Nearest Neighbor Example 1>
+Label: SEIZURE.
+Reference Image 3:
+<Non-Seizure Example EEG Image 1>
+Label: NON-SEIZURE.
+Reference Image 4:
+<Non-Seizure Example EEG Image 2>
+Label: NON-SEIZURE.
+
+[Test Input]
+<Test EEG Image>
+
+[Output Requirement]
+1. Briefly list the observed Frequency, Morphology, and Synchrony as in Analysis Protocol.
+2. Compare the patterns of the Test EEG Image to those of the reference examples.
+3. Classify the provided Test EEG Image. The absolute last line must be exactly:
+FINAL DECISION: SEIZURE or FINAL DECISION: NON-SEIZURE
