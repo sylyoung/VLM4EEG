@@ -49,12 +49,10 @@ Please contact me at syoungli@hust.edu.cn or lsyyoungll@gmail.com for any questi
 ## Citation
 
 If you find this repo helpful, please cite our work:
-
+```
 @Article{Li2026,
   author  = {Li, Siyang and Wang, Zhuoya and Gui, Xiyan and Chen, Xiaoqing and Wang, Ziwei and Wen, Yaozhi and Wu, Dongrui},
   title   = {EEG Seizure Detection via Vision-Language Models with Retrieval-Augmented In-Context Learning},
   year    = {2026},
 }
 ```
-
-## Acknowledgements
