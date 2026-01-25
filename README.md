@@ -52,7 +52,7 @@ If you find this repo helpful, please cite our work:
 ```
 @Article{Li2026,
   author  = {Li, Siyang and Wang, Zhuoya and Gui, Xiyan and Chen, Xiaoqing and Wang, Ziwei and Wen, Yaozhi and Wu, Dongrui},
-  title   = {EEG Seizure Detection via Vision-Language Models with Retrieval-Augmented In-Context Learning},
+  title   = {RAICL: Retrieval-Augmented In-Context Learning for Vision-Language-Model Based EEG Seizure Detection},
   year    = {2026},
 }
 ```
