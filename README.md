@@ -1,4 +1,4 @@
-#  EEG Seizure Detection via Vision-Language Models with Retrieval-Augmented In-Context Learning
+#  RAICL: Retrieval-Augmented In-Context Learning for Vision-Language-Model Based EEG Seizure Detection
 
 <p align="center">
   <img src="figures/vlm4eeg.png" width="100%">
@@ -33,11 +33,11 @@ This enables **zero-training, zero-fine-tuning, task-zero-shot EEG-based seizure
 ```text
 .
 ├── environments.yml        # The python environment required
+├── response/               # Full Gemini responses to two seizure Datasets
 ├── plot_timechan.py        # EEG → stacked waveform image rendering
 ├── extract_feature.py      # Visual embedding extraction using CLIP model
 ├── query_api_raicl.py      # RAICL-based VLM querying using Gemini-3-Flash
 ├── prompt-Z.txt            # The prompt used in paper
-├── response/               # Full Gemini responses to two seizure Datasets
 ├── prompt-xxx.txt          # other prompts variations studied in the paper
 └── README.md
 ```
