@@ -69,7 +69,7 @@ To evaluate metrics from a saved .csv file:
 python query_api_raicl.py --dataset CHSZ --test_file xxx/response/Gemini-3-Flash/NICU/NICU_Flash_TypeZ_NnMedoid_N2_representative_20260117_100250.csv
 ```   
 
-## Demo
+## APP-like Demo
 
 <p align="center">
   <img src="figures/demo.png" width="100%">
