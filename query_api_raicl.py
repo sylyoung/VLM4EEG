@@ -10,6 +10,7 @@ Description: Query API VLM (Gemini in this code) and using RAICL strategies to s
              1. plotted EEG waveform images, by plot_timechan.py
              2. features of the waveform images, extracted by visual encoder (e.g. CLIP visual encoder), by extract_feature.py
              3. prompt file of prompt-Z.txt
+             4. Gemini API key
              Please read the parser of config arguments.
 """
 import sys, os, argparse, re, asyncio, csv, warnings, pickle, glob
@@ -428,7 +429,7 @@ async def worker(model, file_path, label, sem, queue, index, args, prompt_txt):
 
 
 # ==========================================
-# 4. REPORTING
+# 4. Calculate Metrics
 # ==========================================
 def calculate_metrics_report(csv_path, dataset_name):
     try:
@@ -441,31 +442,26 @@ def calculate_metrics_report(csv_path, dataset_name):
     subj_metrics = []
     for s, g in df.groupby('subject_id'):
         yt, yp = g['true_label'], g['pred_label']
-        acc = accuracy_score(yt, yp)
-        bca = balanced_accuracy_score(yt, yp)
-        f1 = f1_score(yt, yp, average='macro', zero_division=0)
 
+        # Weighting logic, considering the downsample
         w = [10 if (dataset_name == 'NICU' or y == 0) else 1 for y in yt]
-        acc_w = accuracy_score(yt, yp, sample_weight=w)
-        bca_w = balanced_accuracy_score(yt, yp, sample_weight=w)
-        f1_w = f1_score(yt, yp, average='macro', sample_weight=w, zero_division=0)
 
-        subj_metrics.append(
-            {'Subject': s, 'R-Acc': acc, 'R-BCA': bca, 'R-F1': f1, 'W-Acc': acc_w, 'W-BCA': bca_w, 'W-F1': f1_w})
+        # Calculate Weighted BCA
+        bca_w = balanced_accuracy_score(yt, yp, sample_weight=w)
+
+        subj_metrics.append({'Subject': s, 'W-BCA': bca_w})
 
     df_m = pd.DataFrame(subj_metrics).set_index('Subject')
     macro = df_m.mean(numeric_only=True) * 100
 
     lines = [f"\nDataset: {dataset_name}"]
-    lines.append("-" * 90)
-    lines.append(f"{'Subject':<10} | {'R-Acc':<6} {'R-BCA':<6} {'R-F1':<6} || {'W-Acc':<6} {'W-BCA':<6} {'W-F1':<6}")
-    lines.append("-" * 90)
+    lines.append("-" * 35)
+    lines.append(f"{'Subject':<15} | {'W-BCA':<6}")
+    lines.append("-" * 35)
     for s, r in df_m.iterrows():
-        lines.append(
-            f"{s:<10} | {r['R-Acc'] * 100:6.2f} {r['R-BCA'] * 100:6.2f} {r['R-F1'] * 100:6.2f} || {r['W-Acc'] * 100:6.2f} {r['W-BCA'] * 100:6.2f} {r['W-F1'] * 100:6.2f}")
-    lines.append("-" * 90)
-    lines.append(
-        f"AVG (Macro) | {macro['R-Acc']:6.2f} {macro['R-BCA']:6.2f} {macro['R-F1']:6.2f} || {macro['W-Acc']:6.2f} {macro['W-BCA']:6.2f} {macro['W-F1']:6.2f}")
+        lines.append(f"{s:<15} | {r['W-BCA'] * 100:6.2f}")
+    lines.append("-" * 35)
+    lines.append(f"AVG (Macro)     | {macro['W-BCA']:6.2f}")
     return "\n".join(lines)
 
 
@@ -579,9 +575,9 @@ async def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--api_key', required=True)  # API key from Gemini API
-    parser.add_argument('--data_dir', default="/")  # path to dataset
     parser.add_argument('--dataset', required=True)  # dataset name
+    parser.add_argument('--api_key')  # API key from Gemini API, not required when in test mode when --test_file is given
+    parser.add_argument('--data_dir', default="/")  # path to dataset, not required when in test mode when --test_file is given
     parser.add_argument('--image_type', default="VLM")  # Query VLM with "VLM"-type plot which includes the axis, ticks, and channel names. The "Vision"-type plot does not have these, only having the EEG waveforms. See plot_timechan.py
     parser.add_argument('--prompt_type', default="Z")  # default is Z, which is the prompt used/described in paper.
     parser.add_argument('--N_fewshots', type=int, default=2)  # NOTE: if changing this parameter, prompt-Z.txt also have to be changed manually to contain more examples. default 2 PER CLASS = 4 TOTAL.

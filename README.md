@@ -42,6 +42,33 @@ This enables **zero-training, zero-fine-tuning, task-zero-shot EEG-based seizure
 └── README.md
 ```
 
+## Example Usage
+
+To plot the stacked waveform EEG image, please read comments in plot_timechan.py and supply the necessary data files
+```sh 
+python plot_timechan.py
+```   
+
+Then, to extract features using e.g. CLIP visual encoder, please read comments in extract_feature.py
+```sh 
+python extract_feature.py
+```   
+
+Finally, to query API e.g. Gemini-3-Flash, need the key of your own. Please read comments in query_api_raicl.py
+```sh 
+python query_api_raicl.py --api_key xxx --dataset CHSZ --data_dir xxx
+```   
+
+To continue querying from an unfinished .csv file:
+```sh 
+python query_api_raicl.py --api_key xxx --dataset CHSZ --data_dir xxx --rerun_timestamp xxx/response/Gemini-3-Flash/NICU/NICU_Flash_TypeZ_NnMedoid_N2_representative_20260117_100250.csv
+```   
+
+To evaluate metrics from a saved .csv file:
+```sh 
+python query_api_raicl.py --dataset CHSZ --test_file xxx/response/Gemini-3-Flash/NICU/NICU_Flash_TypeZ_NnMedoid_N2_representative_20260117_100250.csv
+```   
+
 ## Contact
 
 Please contact me at syoungli@hust.edu.cn or lsyyoungll@gmail.com for any questions regarding the paper, and use Issues for any questions regarding the code.
