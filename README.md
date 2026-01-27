@@ -6,7 +6,7 @@
 
 ---
 This repository contains the **official code** for the paper.  
-It introduces a **new paradigm for EEG decoding** that:
+It introduces a **new paradigm for seizure EEG analysis** that:
 
 - Converts multichannel EEG signals into **stacked waveform images**
 - Uses **off-the-shelf Vision-Language Models (VLMs)** without training
@@ -69,9 +69,15 @@ To evaluate metrics from a saved .csv file:
 python query_api_raicl.py --dataset CHSZ --test_file xxx/response/Gemini-3-Flash/NICU/NICU_Flash_TypeZ_NnMedoid_N2_representative_20260117_100250.csv
 ```   
 
+## Demo
+
+<p align="center">
+  <img src="figures/demo.png" width="100%">
+</p>
+
 ## Contact
 
-Please contact me at syoungli@hust.edu.cn or lsyyoungll@gmail.com for any questions regarding the paper, and use Issues for any questions regarding the code.
+Please contact me at syoungli@hust.edu.cn or lsyyoungll@gmail.com for questions regarding the paper/research, and use Issues tab for questions regarding the code.
 
 ## Citation
 
@@ -81,5 +87,6 @@ If you find this repo helpful, please cite our work:
   author  = {Li, Siyang and Wang, Zhuoya and Gui, Xiyan and Chen, Xiaoqing and Wang, Ziwei and Wen, Yaozhi and Wu, Dongrui},
   title   = {RAICL: Retrieval-Augmented In-Context Learning for Vision-Language-Model Based EEG Seizure Detection},
   year    = {2026},
+  journal = {arXiv preprint arXiv:2601.17844}
 }
 ```
