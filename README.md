@@ -5,7 +5,7 @@
 </p>
 
 ---
-This repository contains the **official code** for the paper.  
+This repository contains the **official code** for the paper [arXiv](https://arxiv.org/abs/2601.17844).  
 It introduces a **new paradigm for seizure EEG analysis** that:
 
 - Converts multichannel EEG signals into **stacked waveform images**
