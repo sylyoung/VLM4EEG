@@ -1,0 +1,9 @@
+name: vlm4eeg
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - -e .
+# Core CPU environment. Gemini: docs/gemini.md; CUDA training: docs/finetuning.md.

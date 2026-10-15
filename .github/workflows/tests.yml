@@ -1,0 +1,47 @@
+name: Offline tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    env:
+      MPLBACKEND: Agg
+      MPLCONFIGDIR: ${{ github.workspace }}/outputs/matplotlib
+      TMPDIR: ${{ github.workspace }}/outputs/runtime
+      PIP_CACHE_DIR: ${{ github.workspace }}/outputs/pip-cache
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Create local runtime directories
+        run: mkdir -p outputs/runtime outputs/matplotlib
+      - name: Install CPU dependencies
+        run: python -m pip install -e ".[dev]"
+      - name: Verify protocol and release
+        run: python -m pytest --basetemp=outputs/test_runtime -q
+      - name: Run synthetic retrieval example
+        run: python examples/retrieval_demo.py
+      - name: Recompute released results
+        run: raicl-score results/CHSZ_Gemini-3-Flash_RAICL.xlsx results/CHSZ_Qwen3.5-9B_RAICL-finetuned.xlsx
+      - name: Build distributable package
+        run: python -m build --outdir outputs/dist
+      - name: Check packaged resources and entry points
+        run: |
+          python -m pip install --force-reinstall --no-deps outputs/dist/*.whl
+          cd outputs
+          raicl-prepare --help
+          raicl-gemini --help
+          raicl-qwen --help
+          raicl-train --help

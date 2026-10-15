@@ -1,0 +1,5 @@
+[Output Requirement]
+1. Briefly list the observed Frequency, Morphology, Synchrony, and Extent as in Analysis Protocol.
+2. Compare the patterns of the Test EEG Image to those of the reference examples.
+3. Classify the provided Test EEG Image. The absolute last line must be exactly:
+FINAL DECISION: NON-SEIZURE or FINAL DECISION: FOCAL SEIZURE or FINAL DECISION: GENERALIZED SEIZURE

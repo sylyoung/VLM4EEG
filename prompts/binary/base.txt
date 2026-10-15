@@ -1,0 +1,9 @@
+[Task Definition]
+Classify the provided electroencephalogram (EEG) time-series plot of Test EEG Image into one of two categories: "SEIZURE" or "NON-SEIZURE".
+
+[Test Input]
+<Test EEG Image>
+
+[Output Requirement]
+Classify the provided Test EEG Image. The absolute last line must be exactly:
+FINAL DECISION: SEIZURE or FINAL DECISION: NON-SEIZURE

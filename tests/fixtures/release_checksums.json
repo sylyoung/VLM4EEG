@@ -1,0 +1,22 @@
+{
+  "LICENSE": "464eefdbdbcafc6865952ebaa4132e571fa10d7f61b9896b6f5866f022834a0e",
+  "configs/chsz_loso_training_queries.json": "9ace0d65de231fdda744d14c12122c87d8c9c77be171c699f7100252287939dd",
+  "figures/chsz_results.png": "1e31d3139ef5df548cc790bc73d2d0dcd464f402835ff4ca4366aa9d10e236b0",
+  "figures/archive/demo.png": "61585036f34c299cf0204030c9b70d53dadf82dd1af7c7c045e7d5e5cd5be63d",
+  "figures/raicl.png": "51105a446c2e10813904678ff33a4590655bac1920349fbacc9f7236fa0b8159",
+  "figures/archive/vlm4eeg.png": "98b50ef5f1558ec535056bfbc2ae1dc864496ab0deff1283afb36619caed86f3",
+  "prompts/binary/raicl.txt": "1aa9c630e0d4d6ce64de281e560f3919eb04dd0ebac26552e979bdeb71743b7a",
+  "prompts/binary/base.txt": "94e1beffef5f856022c5f0694a34854e68ec8856ecca29c1f24c06a99a152f30",
+  "prompts/binary/random_examples.txt": "a4f4e2dea92fba72ff11573ad4c868a35fd5847ba6a30e5b91a162b56e7e51cd",
+  "prompts/binary/reasoning.txt": "eba9abab9572c638ec880462dd44612e911ef13b5f6f8b4e4dad451e59e71a52",
+  "prompts/experimental/concrete_wording.txt": "c8f4f95a261e50030f027109ab267699ef30fc7c56a2282309b3842462a90d35",
+  "prompts/experimental/decision_only.txt": "2d536821362298caa8e397b64bf10bcf30edada0b607eeedd834e9dda8326ca2",
+  "prompts/tusz/base.txt": "f5d0150e578a7bdd648bcd039a7126ebe7660d7eb89414496537f1c9a1388f35",
+  "prompts/tusz/head.txt": "7c2e673a381f23f1bae5f21a6a3a5d51c3d3788beffce686b788d97e6525c19f",
+  "prompts/tusz/output_no_references.txt": "f5a7cd4f572e45df8d8c2b677a1430ac98fe452df72fb6095d62835e5662cb46",
+  "prompts/tusz/output_with_references.txt": "ba8ac877d6f852e402c0e823892fa7d353dd56abb4029ca9faaffe08f5a5a89b",
+  "prompts/tusz/tusz_seizure_type_prompt.py": "82ea606f8b121f4da3035c38f2bcf91f8b5bbedd1dc306d060f2b0892241d19d",
+  "results/CHSZ_Gemini-3-Flash_RAICL.xlsx": "f92713ec15845fac0c5f2ff0bc1b031fb82096f8c78e85bffcd8fd010a427fdd",
+  "results/CHSZ_Qwen3.5-9B_RAICL-finetuned.xlsx": "18bf1e230939d05bcc7f523944447ee9a296696045477535ece39906aa3719ac",
+  "licenses/LLaMA-Factory.txt": "50e6751797c50dedd75ef1b8a0d9e42f5f8472e9fbce91f34718e9f97b0c780a"
+}

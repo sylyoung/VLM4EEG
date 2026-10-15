@@ -1,0 +1,57 @@
+# Operating-system and editor files
+.DS_Store
+._*
+.idea/
+.vscode/
+
+# Python environments, builds and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage*
+htmlcov/
+.ipynb_checkpoints/
+
+# Credentials and local configuration
+.env
+.env.*
+.envrc
+.pypirc
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+
+# Private inputs, model weights and generated experiment outputs
+/data/
+/models/
+/outputs/
+/external/
+*.npy
+*.npz
+*.pkl
+*.safetensors
+*.pt
+*.pth
+*.log
+
+# Manuscripts, review material and local project records
+/submission/
+/review/
+/reports/
+/status/
+/plans/
+/deliverables/
+
+# Preserve only the existing two prediction workbooks
+*.xlsx
+!results/CHSZ_Gemini-3-Flash_RAICL.xlsx
+!results/CHSZ_Qwen3.5-9B_RAICL-finetuned.xlsx

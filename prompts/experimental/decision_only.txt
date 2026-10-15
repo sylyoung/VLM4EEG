@@ -1,0 +1,33 @@
+[Task Definition]
+Classify the Test EEG Image as "SEIZURE" or "NON-SEIZURE" by comparing its waveform morphology and cross-channel synchronization with the labeled reference images.
+
+[Diagnostic Criteria]
+Assess whether the test trial departs from the patient's non-seizure background through repeated spike-and-wave or polyspike patterns, organized rhythmic structure, or synchronized activity across channels. Amplitude alone is not sufficient because each channel is percentile-scaled within the trial. Do not treat a visually estimated frequency as a measured numerical value.
+
+[Analysis Protocol]
+Compare the test trial with the same-patient non-seizure anchors and the auxiliary-patient seizure examples. Inspect morphology, rhythm, and synchronization internally. Output only the classification decision, without a rationale or numerical frequency estimate.
+
+[Reference Examples]
+The NON-SEIZURE examples are from the same patient. The SEIZURE examples are from auxiliary patients.
+
+Reference Image 1:
+<Nearest Neighbor Example 2>
+Label: SEIZURE.
+Reference Image 2:
+<Nearest Neighbor Example 1>
+Label: SEIZURE.
+Reference Image 3:
+<Non-Seizure Example EEG Image 1>
+Label: NON-SEIZURE.
+Reference Image 4:
+<Non-Seizure Example EEG Image 2>
+Label: NON-SEIZURE.
+
+[Test Input]
+<Test EEG Image>
+
+[Output Requirement]
+Output exactly one line:
+FINAL DECISION: SEIZURE
+or
+FINAL DECISION: NON-SEIZURE

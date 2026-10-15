@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "raicl-eeg"
+version = "0.1.0"
+description = "Retrieval-augmented in-context learning for VLM-based EEG seizure detection"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT AND Apache-2.0"
+license-files = ["LICENSE", "licenses/LLaMA-Factory.txt"]
+authors = [{name = "Siyang Li", email = "syoungli@hust.edu.cn"}]
+dependencies = [
+    "numpy>=1.24",
+    "scikit-learn>=1.3",
+    "openpyxl>=3.1",
+    "PyYAML>=6",
+]
+
+[project.optional-dependencies]
+render = ["matplotlib>=3.7", "Pillow>=10"]
+embed = ["torch", "torchvision", "Pillow>=10", "tqdm>=4.65"]
+gemini = ["google-genai>=1.0"]
+dev = ["pytest>=8", "matplotlib>=3.7", "Pillow>=10", "build>=1.2"]
+
+[project.urls]
+Repository = "https://github.com/sylyoung/VLM4EEG"
+Paper = "https://arxiv.org/abs/2601.17844"
+Issues = "https://github.com/sylyoung/VLM4EEG/issues"
+
+[project.scripts]
+raicl-render = "raicl.workflows.render:main"
+raicl-embed = "raicl.workflows.embed:main"
+raicl-prepare = "raicl.workflows.prepare:main"
+raicl-gemini = "raicl.workflows.gemini:main"
+raicl-train = "raicl.workflows.train:main"
+raicl-qwen = "raicl.workflows.qwen:main"
+raicl-score = "raicl.workflows.score:main"
+
+[tool.setuptools]
+include-package-data = false
+packages = [
+    "raicl",
+    "raicl.models",
+    "raicl.workflows",
+    "raicl.resources",
+    "raicl.resources.prompts",
+    "raicl.resources.prompts.binary",
+    "raicl.resources.prompts.experimental",
+    "raicl.resources.prompts.tusz",
+    "raicl.resources.configs",
+]
+
+[tool.setuptools.package-dir]
+"" = "src"
+"raicl.workflows" = "scripts"
+"raicl.resources.prompts" = "prompts"
+"raicl.resources.configs" = "configs"
+
+[tool.setuptools.package-data]
+"raicl.resources.prompts.binary" = ["*.txt"]
+"raicl.resources.prompts.experimental" = ["*.txt"]
+"raicl.resources.prompts.tusz" = ["*.txt"]
+"raicl.resources.configs" = ["*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

@@ -1,0 +1,10 @@
+model,prompt,BCA,Specificity,Macro F1
+Gemini-3-Flash,Base,50.53,68.51,46.74
+Gemini-3-Flash,Random,47.63,69.32,45.91
+Gemini-3-Flash,RAICL,48.75,67.16,51.63
+Qwen3.5-9B,Base,38.05,62.44,40.15
+Qwen3.5-9B,Random,43.43,65.03,42.25
+Qwen3.5-9B,RAICL,45.65,64.38,42.48
+"Qwen3.5-9B, fine-tuned",Base,53.01,61.94,60.15
+"Qwen3.5-9B, fine-tuned",Random,59.43,63.92,64.81
+"Qwen3.5-9B, fine-tuned",RAICL,60.65,71.38,65.91

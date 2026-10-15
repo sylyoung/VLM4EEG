@@ -1,0 +1,51 @@
+[Task Definition]
+From a professional EEG diagnostician perspective, classify the provided electroencephalogram (EEG) time-series plot of Test EEG Image into one of two categories: "SEIZURE" or "NON-SEIZURE".
+
+[Diagnostic Criteria]
+The image shows 18 stacked traces, one per channel, drawn left to right over time. Tick marks on the time axis are half a second apart. Judge everything below from the drawn curves alone.
+
+1. NON-SEIZURE (Background/Artifact):
+   - Background: each trace wanders. Successive peaks differ in height and in the horizontal distance between them, and no single shape repeats more than two or three times in a row at a steady spacing.
+   - Isolated Artifacts: one tall narrow excursion, or one short burst of dense fuzz, that occurs once and is not followed by the same shape at a regular spacing.
+   - Postictal Slowing: broad rounded bumps, each one wider than the gap between two neighbouring tick marks, with no narrow peaks riding on them. Classify as Non-Seizure unless a narrow peak sits immediately before each bump.
+
+2. SEIZURE:
+   Look for a stretch of the trace that is drawn differently from the rest of the same trace, identified by:
+   - Morphology:
+     * Spike-and-Slow-Wave: a narrow peak that rises and falls within roughly a tenth of the gap between two neighbouring tick marks, immediately followed by a broad rounded bump several times wider than that peak, and this pair repeats.
+     * Polyspikes: two or more narrow peaks crowded together, followed by one broad bump.
+     * High Amplitude: peaks at least twice as tall as the typical peaks drawn elsewhere in the same trace.
+   - Synchrony: the same shape appears at nearly the same horizontal position in three or more of the stacked traces, so the peaks line up vertically down the image.
+   - Repetition Rate: the repeating shape occurs between about one and five times between two neighbouring tick marks.
+   - Special Cases: a region where the traces are filled with dense fast fuzz that hides the underlying curve can indicate Tonic-Clonic seizure.
+
+[Analysis Protocol]
+Before categorizing, generate a brief visual description of the Test EEG Image to ground the reasoning:
+1. Frequency Check: pick one trace, find the shape that repeats most clearly, and count how many times it occurs between two neighbouring tick marks. Between one and five is the seizure range; a trace with no shape that repeats at a steady spacing is background.
+2. Morphology Check: is there a narrow peak immediately followed by a broad bump, repeating, or only irregular wiggles and fuzz?
+3. Synchrony Check: does the same shape line up vertically across three or more traces at the same horizontal position?
+
+[Reference Examples]
+The following EEG-images serve as ground-truth anchors for the classification. The Non-SEIZURE examples are from the same patient, whereas the SEIZURE examples are from a different patient with seizure:
+
+Reference Image 1:
+<Nearest Neighbor Example 2>
+Label: SEIZURE.
+Reference Image 2:
+<Nearest Neighbor Example 1>
+Label: SEIZURE.
+Reference Image 3:
+<Non-Seizure Example EEG Image 1>
+Label: NON-SEIZURE.
+Reference Image 4:
+<Non-Seizure Example EEG Image 2>
+Label: NON-SEIZURE.
+
+[Test Input]
+<Test EEG Image>
+
+[Output Requirement]
+1. Briefly list the observed Frequency, Morphology, and Synchrony as in Analysis Protocol.
+2. Compare the patterns of the Test EEG Image to those of the reference examples.
+3. Classify the provided Test EEG Image. The absolute last line must be exactly:
+FINAL DECISION: SEIZURE or FINAL DECISION: NON-SEIZURE

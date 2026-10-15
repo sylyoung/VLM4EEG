@@ -1,0 +1,2 @@
+# Core retrieval and scoring; optional dependencies are described in README.md.
+-e .
